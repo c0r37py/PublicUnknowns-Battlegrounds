@@ -6,7 +6,7 @@
 	#pragma pack(push, 0x8)
 #endif
 
-#include "PUBGLITE_AIModule_structs.hpp"
+#include "PUBGLICUNKNOWNS_AIModule_structs.hpp"
 
 namespace SDK
 {
