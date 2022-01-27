@@ -1,5 +1,7 @@
 *.h linguist-language=C
 *.h linguist-language=CPP
+*.cpp linguist-language=C
+*.cpp linguist-language=CPP
 *.h linguist-language=LUA
 *.h linguist-language=JAVA
 *.h linguist-language=HTML
