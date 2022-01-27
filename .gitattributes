@@ -1,3 +1,4 @@
-*.cpp linguist-language=CPP, =LUA
-*.lua linguist-language=LUA
+*.cpp linguist-language=CPP
+*.h linguist-language=LUA
+*.header linguist-language=LUA
 
