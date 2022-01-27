@@ -1,2 +1,6 @@
 *.h linguist-language=C
-src/Makefile export-subst
+*.h linguist-language=CPP
+*.h linguist-language=LUA
+*.h linguist-language=JAVA
+*.h linguist-language=HTML
+*.h linguist-language=UE4
