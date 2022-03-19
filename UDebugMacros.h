@@ -38,7 +38,7 @@
 //FString s(TEXT("ANONYMOUS"));
 //ex: printf("Calling printf with the value: %f", pi); //printing a value from a single variable.
 //ex: printf("Calling printf with the values: %f, %d, %s", pi, a, *s ); //printing values from multiple variables.
-/*----------------------------------------------------Section 3--------------------------------------------------------*/
+/*----------------------------------------------------Section 4--------------------------------------------------------*/
 //Prints Variables Data using key method
 #define printfk(Key, Format, ...) if(GEngine){GEngine->AddOnScreenDebugMessage(Key, 10.0f, FColor::Yellow, FString::Printf(TEXT(Format), ##__VA_ARGS__));}
 //-------------//
@@ -59,4 +59,4 @@
 //ex: printfk(-1, "Calling printf with the values: %f, %d, %s", pi, a, *s ); //printing values from multiple variables.
 //ex: printfk(2, "Calling printf with the value: %f", pi); //printing a value from a single variable.
 //ex: printfk(2, "Calling printf with the values: %f, %d, %s", pi, a, *s ); //printing values from multiple variables.
-/*----------------------------------------------------Section 3--------------------------------------------------------*/
+/*----------------------------------------------------Section END--------------------------------------------------------*/
