@@ -12,7 +12,7 @@ https://vk.com/video-205432676_456239124
 
 ## PUBLIC UNKNOWN'S LITE CODE STRUCTURE
 
-![Screenshot](Code3.PNG)
+![Screenshot](Code3.PMG)
 
 ' Base Unreal Engine classes
 class UObject
