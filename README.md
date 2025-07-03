@@ -530,3 +530,136 @@ Survive::Source::Gameplay::UAEGameMode --> Survive::Source::Gameplay::UAECharact
 Survive::Source::Gameplay::WeaponManagerComponent --> Survive::Source::Gameplay::STExtraShootWeapon : manages
 Survive::Source::Gameplay::STExtraShootWeapon --> Survive::Source::Gameplay::FireWeaponState : uses
 Survive::Source::Gameplay::STExtraShootWeapon --> Survive::Source::Gameplay::IdleWeaponState : uses
+
+' Core
+class GameMode {
+    +StartMatch()
+    +EndMatch()
+    +HandlePlayerDeath()
+}
+
+class PlayerController {
+    +ProcessInput()
+    +SwitchState(State)
+    +Health : float
+    +State : PlayerControllerState
+}
+
+class PlayerCharacter {
+    +Move()
+    +Jump()
+    +FireWeapon()
+    +Health : float
+    +Armor : float
+    -Inventory : InventoryComponent
+}
+
+class InventoryComponent {
+    +AddItem(Item)
+    +RemoveItem(Item)
+    -Items : Item[]
+}
+
+class Item {
+    +Use()
+    +Type : ItemType
+}
+
+class Weapon {
+    +Fire()
+    +Reload()
+    +Ammo : int
+    +Damage : float
+}
+
+class Vehicle {
+    +Drive()
+    +Enter()
+    +Exit()
+    +Health : float
+    +Fuel : float
+}
+
+class AIController {
+    +PlanRoute()
+    +DecideAction()
+    +BehaviorTree : BehaviorTree
+}
+
+class GameState {
+    +GetCurrentState()
+    +SetCurrentState(State)
+    -CurrentState : GameStateType
+}
+
+class UIManager {
+    +ShowHUD()
+    +UpdateInventoryDisplay()
+}
+
+class SkillSystem {
+    +ActivateSkill(Skill)
+    +CooldownComplete(Skill)
+}
+
+class MatchmakingSystem {
+    +FindMatch()
+    +JoinTeam()
+}
+
+' Relationships
+PlayerController --> PlayerCharacter : controls
+PlayerCharacter --> InventoryComponent : uses
+PlayerCharacter --> Weapon : equips
+PlayerCharacter --> Vehicle : interacts
+AIController --> PlayerCharacter : targets
+GameMode --> GameState : maintains
+GameMode --> MatchmakingSystem : coordinates
+UIManager --> PlayerController : updates
+SkillSystem --> PlayerCharacter : interacts
+
+' Components
+package "Client Components" {
+    [PlayerController]
+    [UIManager]
+    [InventoryComponent]
+}
+
+package "Gameplay Systems" {
+    [GameMode]
+    [SkillSystem]
+    [MatchmakingSystem]
+    [PlayerCharacter]
+}
+
+package "AI System" {
+    [AIController]
+}
+
+package "Networking" {
+    [NetworkManager]
+}
+
+package "Third-party Plugins" {
+    [GVoiceSDK]
+    [OceanPlugin]
+}
+
+' Interfaces
+[NetworkManager] --> [GVoiceSDK] : integrates
+[GameMode] --> [NetworkManager] : manages
+[PlayerController] --> [UIManager] : updates UI
+[PlayerCharacter] --> [InventoryComponent] : has
+[AIController] --> [PlayerCharacter] : interacts
+
+client Player
+participant "PlayerController" as PC
+participant "PlayerCharacter" as Character
+participant "Weapon" as Weapon
+
+Player -> PC : Press Fire Button
+PC -> Character : Trigger FireWeapon()
+Character -> Weapon : Fire()
+Weapon -> Character : Decrease Ammo
+Character -> PC : Update HUD
+
